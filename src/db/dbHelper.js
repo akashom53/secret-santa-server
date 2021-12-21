@@ -33,6 +33,16 @@ const initDB = async () => {
   console.log('DB init complete')
 }
 
+const getUserByToken = async (token) => new Promise((resolve, reject) => {
+  db.get(queries.getUserByToken, [token], (err, result) => {
+    if (err) {
+      reject(err)
+    } else {
+      resolve(result)
+    }
+  })
+})
+
 
 const getUserByPhone = async (phone) => new Promise((resolve, reject) => {
   db.get(queries.getUserByPhone, [phone], (err, result) => {
@@ -84,4 +94,4 @@ const addWishlist = async (name, desc, url, userId) => new Promise((resolve, rej
   })
 })
 
-module.exports = DBHelper = { reset, initDB, getUserByPhone, getUserById, setToken, getWislistByUserId, addWishlist }
+module.exports = DBHelper = { reset, initDB, getUserByPhone, getUserById, setToken, getWislistByUserId, addWishlist, getUserByToken }

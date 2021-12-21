@@ -14,6 +14,7 @@ const queries = {
     userId INTEGER
   )`,
   getUserByPhone: `SELECT * FROM User WHERE phone = ?`,
+  getUserByToken: `SELECT * FROM User WHERE token = ?`,
   getUserById: `SELECT * FROM User WHERE id = ?`,
   createUser: `INSERT INTO User (id, name, phone, gifteeId) VALUES (?, ?, ?, ?)`,
   setToken: `UPDATE User

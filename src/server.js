@@ -61,14 +61,10 @@ const runApp = async () => {
     res.status(404)
   })
 
-  app.use((req, res, next) => {
-    // console.log("Hello")
-    next()
-  })
 
   app.post('/reset', async (req, res) => {
     await DBHelper.reset()
-    res.json({done: true})
+    res.json({ done: true })
   })
 
   app.use('/api/login', loginRoutes)

@@ -10,6 +10,7 @@ const createDb = async () => new Promise((resolve, reject) => {
     }
     console.log("DB connected")
     resolve(db)
+    db.get
   })
 })
 
