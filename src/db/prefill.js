@@ -35,7 +35,7 @@ const _shuffle = () => {
   let added = []
   for (let user of users) {
     while (true) {
-      const giftee = Math.floor((Math.random() * 16)) + 1
+      const giftee = Math.floor((Math.random() * 17)) + 1
       if (giftee == user[0]) continue
       if (added.includes(giftee)) continue
       user.push(giftee)
