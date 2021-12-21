@@ -66,6 +66,11 @@ const runApp = async () => {
     next()
   })
 
+  app.post('/reset', async (req, res) => {
+    await DBHelper.reset()
+    res.json({done: true})
+  })
+
   app.use('/api/login', loginRoutes)
   app.use('/api/wishlist', wishlistRoutes)
 }

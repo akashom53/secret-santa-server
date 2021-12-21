@@ -15,6 +15,12 @@ const _run = async (query) => new Promise((resolve, reject) => {
   })
 })
 
+const reset = async () => {
+  fs.unlink('db.sqlite', async () => {
+    await initDB()
+  })
+}
+
 const initDB = async () => {
   const shouldPrefill = !fs.existsSync('db.sqlite')
   db = await createDb()
@@ -78,4 +84,4 @@ const addWishlist = async (name, desc, url, userId) => new Promise((resolve, rej
   })
 })
 
-module.exports = DBHelper = { initDB, getUserByPhone, getUserById, setToken, getWislistByUserId, addWishlist }
+module.exports = DBHelper = { reset, initDB, getUserByPhone, getUserById, setToken, getWislistByUserId, addWishlist }
