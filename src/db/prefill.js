@@ -32,6 +32,7 @@ const users = [
 ]
 
 const _shuffle = () => {
+  console.log("Shuffling")
   let added = []
   for (let user of users) {
     while (true) {
@@ -42,15 +43,16 @@ const _shuffle = () => {
       added.push(giftee)
       break
     }
+    console.log(user)
   }
-  console.log(added)
-  console.log(users)
+  console.log("Shuffling complete")
 }
 
 module.exports = prefillDb = async (db) => {
+  
   _shuffle()
+  console.log("Updating db")
   for (let user of users) {
     const result = await _run(db, queries.createUser, user)
-    // console.log(result)
   }
 }
