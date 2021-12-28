@@ -54,6 +54,17 @@ const getUserByPhone = async (phone) => new Promise((resolve, reject) => {
   })
 })
 
+
+const getAllUsers = async () => new Promise((resolve, reject) => {
+  db.all(queries.getAllUsers, (err, result) => {
+    if (err) {
+      reject(err)
+    } else {
+      resolve(result)
+    }
+  })
+})
+
 const getUserById = async (id) => new Promise((resolve, reject) => {
   db.get(queries.getUserById, [id], (err, result) => {
     if (err) {
@@ -94,4 +105,14 @@ const addWishlist = async (name, desc, url, userId) => new Promise((resolve, rej
   })
 })
 
-module.exports = DBHelper = { reset, initDB, getUserByPhone, getUserById, setToken, getWislistByUserId, addWishlist, getUserByToken }
+const logout = async (id) => new Promise((resolve, reject) => {
+  db.run(queries.logoutUser, [id], (err) => {
+    if (err) {
+      reject(err)
+    } else {
+      resolve()
+    }
+  })
+})
+
+module.exports = DBHelper = { logout, getAllUsers, reset, initDB, getUserByPhone, getUserById, setToken, getWislistByUserId, addWishlist, getUserByToken, }

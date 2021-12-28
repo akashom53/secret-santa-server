@@ -31,6 +31,10 @@ const runApp = async () => {
 
   app.use(bodyParser.urlencoded({ extended: false }))
   app.use(bodyParser.json())
+  app.use((req, res, next) => {
+    console.log(req)
+    next()
+  })
 
   app.get('/img/*', (req, res) => {
     const file = path.join(dir, req.path.replace(/\/$/, '/index.html'))
@@ -61,6 +65,15 @@ const runApp = async () => {
     res.status(404)
   })
 
+
+  app.get('/users', async (req, res) => {
+    const users = await DBHelper.getAllUsers();
+    res.json(users)
+  })
+  app.get('/logout', async (req, res) => {
+    await DBHelper.logout(req.query.id);
+    res.json({ 'msg': 'Success' })
+  })
 
   app.post('/reset', async (req, res) => {
     await DBHelper.reset()
