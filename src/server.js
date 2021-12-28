@@ -31,10 +31,10 @@ const runApp = async () => {
 
   app.use(bodyParser.urlencoded({ extended: false }))
   app.use(bodyParser.json())
-  app.use((req, res, next) => {
-    console.log(req)
-    next()
-  })
+  // app.use((req, res, next) => {
+  //   console.log(req)
+  //   next()
+  // })
 
   app.get('/img/*', (req, res) => {
     const file = path.join(dir, req.path.replace(/\/$/, '/index.html'))
